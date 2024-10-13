@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TicketMasterMVC.Data;
 using TicketMasterMVC.Models;
+using TicketMasterMVC.Services;
 
 
 
@@ -17,12 +18,20 @@ builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<TicketContext>()
     .AddDefaultTokenProviders();
 
+//EmailSender
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
 
 // Register HttpClient for ApiService
 builder.Services.AddHttpClient<ApiService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7267/");
 });
+
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<TicketContext>()
+    .AddDefaultTokenProviders();
 
 
 builder.Services.AddControllersWithViews();

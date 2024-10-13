@@ -6,11 +6,17 @@ namespace TicketMasterMVC.Models
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public required  string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public required string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public  required string ConfirmPassword { get; set; }
+
+        public required string OTP { get; set; } // For OTP Verification
     }
 
 }
